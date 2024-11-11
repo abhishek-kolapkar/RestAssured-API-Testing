@@ -17,7 +17,7 @@ public class APIRequests {
         .statusCode(200)
         .log().all();
   }
-  
+
   @Test
   void createPost() {
     JSONObject data = new JSONObject();
@@ -36,7 +36,7 @@ public class APIRequests {
         .statusCode(201)
         .log().all();
   }
-  
+
   @Test
   void updatePost() {
     JSONObject data = new JSONObject();
@@ -49,10 +49,22 @@ public class APIRequests {
         .body(data)
 
         .when()
-            .put("https://jsonplaceholder.typicode.com/posts/2")
+        .put("https://jsonplaceholder.typicode.com/posts/2")
 
         .then()
-            .statusCode(200)
-            .log().all();
+        .statusCode(200)
+        .log().all();
+  }
+
+  @Test
+  void deletePost() {
+    given()
+
+        .when()
+        .delete("https://jsonplaceholder.typicode.com/posts/5")
+
+        .then()
+        .statusCode(200)
+        .log().all();
   }
 }
