@@ -30,10 +30,29 @@ public class APIRequests {
         .body(data)
 
         .when()
-            .post("https://jsonplaceholder.typicode.com/posts")
-            
+        .post("https://jsonplaceholder.typicode.com/posts")
+
         .then()
-            .statusCode(201)
+        .statusCode(201)
+        .log().all();
+  }
+  
+  @Test
+  void updatePost() {
+    JSONObject data = new JSONObject();
+    data.put("title", "Updated Post");
+    data.put("body", "This is the updated body of the post");
+    data.put("userId", 1);
+
+    given()
+        .contentType("application/json")
+        .body(data)
+
+        .when()
+            .put("https://jsonplaceholder.typicode.com/posts/2")
+
+        .then()
+            .statusCode(200)
             .log().all();
   }
 }
